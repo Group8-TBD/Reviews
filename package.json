@@ -10,24 +10,32 @@
   "scripts": {
     "build:dev": "webpack -d --watch",
     "build:prod": "webpack --mode=production",
-    "start:dev": "nodemon server/index.js -w server -w database-mysql"
+    "start:dev": "nodemon server/index.js -w server -w database-mysql",
+    "test": "jest",
+    "test:coverage": "jest --coverage --colors"
   },
   "dependencies": {
-    "@babel/core": "^7.8.7",
-    "@babel/preset-env": "^7.8.7",
-    "@babel/preset-react": "^7.8.3",
     "axios": "^0.19.2",
-    "babel-loader": "^8.0.6",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "mysql": "^2.18.1",
     "path": "^0.12.7",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
-    "webpack": "^4.42.0",
-    "webpack-cli": "^3.3.11"
+    "react-test-renderer": "^16.13.0"
   },
   "devDependencies": {
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
+    "@babel/core": "^7.8.7",
+    "@babel/preset-env": "^7.8.7",
+    "@babel/preset-react": "^7.8.3",
+    "babel-core": "^6.26.3",
+    "babel-jest": "^25.1.0",
+    "babel-loader": "^8.0.6",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "jest": "^25.1.0",
+    "webpack": "^4.42.0",
+    "webpack-cli": "^3.3.11"
   }
 }
