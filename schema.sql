@@ -13,12 +13,12 @@ CREATE TABLE users (
 
 CREATE TABLE listings (
   id INT NOT NULL AUTO_INCREMENT,
-  com_rating INT,
-  acuracy_rating INT,
-  clean_rating INT,
-  checkin_rating INT,
-  location_rating INT,
-  value_rating INT,
+  com_rating DECIMAL(2, 1),
+  acuracy_rating DECIMAL(2, 1),
+  clean_rating DECIMAL(2, 1),
+  checkin_rating DECIMAL(2, 1),
+  location_rating DECIMAL(2, 1),
+  value_rating DECIMAL(2, 1),
   star_rating INT,
   PRIMARY KEY (id)
 );
@@ -26,10 +26,10 @@ CREATE TABLE listings (
 CREATE TABLE reviews (
   id INT NOT NULL AUTO_INCREMENT,
   text VARCHAR(500),
-  date DATE,
+  date VARCHAR,
   user_id,
-  listing_id,
-  PRIMARY KEY (id)
+  listings_id,
   FOREIGN KEY(user_id) REFERENCES users(id),
-  FOREIGN KEY(listing_id) REFERENCES listings(id)
+  FOREIGN KEY(listings_id) REFERENCES listings(id),
+  PRIMARY KEY (id)
 );
