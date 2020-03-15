@@ -1,35 +1,32 @@
-DROP DATABASE IF EXISTS reservations;
+DROP DATABASE IF EXISTS airbnb;
 
-CREATE DATABASE reservations;
+CREATE DATABASE airbnb;
 
-USE reservations;
+USE airbnb;
 
 CREATE TABLE users (
-  id INT NOT NULL AUTO_INCREMENT,
-  name VARCHAR(50),
-  avatar VARCHAR,
-  PRIMARY KEY (id)
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100),
+  avatar VARCHAR(255)
 );
 
 CREATE TABLE listings (
-  id INT NOT NULL AUTO_INCREMENT,
-  com_rating DECIMAL(2, 1),
-  acuracy_rating DECIMAL(2, 1),
-  clean_rating DECIMAL(2, 1),
-  checkin_rating DECIMAL(2, 1),
-  location_rating DECIMAL(2, 1),
-  value_rating DECIMAL(2, 1),
-  star_rating INT,
-  PRIMARY KEY (id)
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  com_rating DECIMAL(2, 1) NOT NULL,
+  acuracy_rating DECIMAL(2, 1) NOT NULL,
+  clean_rating DECIMAL(2, 1) NOT NULL,
+  checkin_rating DECIMAL(2, 1) NOT NULL,
+  location_rating DECIMAL(2, 1) NOT NULL,
+  value_rating DECIMAL(2, 1) NOT NULL,
+  star_rating INT NOT NULL
 );
 
 CREATE TABLE reviews (
-  id INT NOT NULL AUTO_INCREMENT,
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   text VARCHAR(500),
-  date VARCHAR,
-  user_id,
-  listings_id,
+  date VARCHAR(200),
+  user_id INT,
+  listings_id INT,
   FOREIGN KEY(user_id) REFERENCES users(id),
-  FOREIGN KEY(listings_id) REFERENCES listings(id),
-  PRIMARY KEY (id)
+  FOREIGN KEY(listings_id) REFERENCES listings(id)
 );

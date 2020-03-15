@@ -3,12 +3,12 @@ const faker = require('faker');
 
 const usersSeedData = () => {
 
-  let name = faker.name.firstName() + faker.name.lastName();
+  let username = faker.name.firstName();
   let avatar = faker.image.avatar();
-  let queryString = `INSERT INTO users (name, avatar) VALUES (${name}, ${avatar})`
+  let queryString = `INSERT INTO users (name, avatar) VALUES ('${username}', '${avatar}')`
   db.query(queryString, (err, data) => {
     if (err) {
-      console.log('Error seeing the user table in the database');
+      console.log('Error seeding the users table in the database', err);
     }
   });
 };
@@ -27,7 +27,7 @@ const listingsSeedData = () => {
   VALUES (${com_rating}, ${acuracy_rating}, ${clean_rating}, ${checkin_rating}, ${location_rating}, ${value_rating}, ${star_rating})`
   db.query(queryString, (err, data) => {
     if (err) {
-      console.log('Error seeing the listing table in the database');
+      console.log('Error seeding the listing table in the database', err);
     }
   })
 };
@@ -35,11 +35,11 @@ const listingsSeedData = () => {
 const reviewsSeedData = () => {
 
   let text = faker.lorem.paragraph();
-  let date = faker.date.month + 2019;
-  let queryString = `INSERT INTO listings (text, date) VALUES (${text}, ${date})`
+  let date = faker.date.month() + " 2019";
+  let queryString = `INSERT INTO reviews (text, date) VALUES ('${text}', '${date}')`
   db.query(queryString, (err, data) => {
     if (err) {
-      console.log('Error seeing the reviews table in the database');
+      console.log('Error seeding the reviews table in the database', err);
     }
   })
 };
