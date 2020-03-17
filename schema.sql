@@ -26,7 +26,5 @@ CREATE TABLE reviews (
   text VARCHAR(500),
   date VARCHAR(200),
   user_id INT,
-  listings_id INT,
-  FOREIGN KEY(user_id) REFERENCES users(id),
-  FOREIGN KEY(listings_id) REFERENCES listings(id)
+  listings_id INT
 );
