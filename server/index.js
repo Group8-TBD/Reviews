@@ -5,14 +5,9 @@ const app = express();
 const PORT = 3500;
 
 /********* Middleware *********/
-app.use(express.static(__dirname + '/../public/dist'));
+app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-
-app.get('/dogs', (req, res) => {
-  console.log('HIIIII');
-})
 
 /********* Routes + Controllers *********/
 app.get('/api/listing', (req, res) => {
