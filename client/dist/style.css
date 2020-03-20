@@ -1,0 +1,56 @@
+.leftBars {
+  grid-column: 3/6;
+  grid-row: 1;
+}
+.rightBars {
+  grid-column: 5/6;
+  grid-row: 1;
+}
+.leftBox {
+  grid-column: 2/6;
+  grid-row: 1;
+}
+.rightBox {
+  grid-column: 4/6;
+  grid-row: 1;
+}
+.ratingsBox {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #EBEBEB
+}
+.image{
+  width: 60px;
+  height: 60px;
+  background-size: cover;
+  display: block;
+  border-radius: 100px;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+
+ }
+.name {
+  padding-left: 100px;
+  padding-top: 10px;
+  position: absolute;
+  right: 600px;
+}
+.date {
+  padding-left: 100px;
+  padding-top: 30px;
+  position: absolute;
+  right: 550px;
+}
+.userBox {
+  display: grid;
+  width: 20%;
+  padding: 50px;
+  padding-bottom: 20px;
+}
+ .reviewText{
+   width: 70%;
+ }
+ .reviewBreak {
+  border-bottom: 1px solid #EBEBEB;
+ }
