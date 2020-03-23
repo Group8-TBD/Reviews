@@ -111,9 +111,9 @@ class App extends React.Component {
             <div>
             </div>
             <div className={styles.leftBars}>
-              <progress className={styles.progress} value="50" max="100"></progress><br></br>
-              <progress className={styles.progress} value="50" max="100"></progress><br></br>
-              <progress className={styles.progress} value="50" max="100"></progress><br></br>
+              <progress className={styles.progress} value={this.state.com_rating} max="5"></progress><br></br>
+              <progress className={styles.progress} value={this.state.acuracy_rating} max="5"></progress><br></br>
+              <progress className={styles.progress} value={this.state.clean_rating} max="5"></progress><br></br>
             </div>
             <div className={styles.leftScores}>
               <div>{this.state.com_rating}</div>
@@ -126,9 +126,9 @@ class App extends React.Component {
               <div className={styles.rating}>Value </div>
             </div>
             <div className={styles.rightBars}>
-              <progress className={styles.progress} value="50" max="100"></progress><br></br>
-              <progress className={styles.progress} value="50" max="100"></progress><br></br>
-              <progress className={styles.progress} value="50" max="100"></progress><br></br>
+              <progress className={styles.progress} value={this.state.checkin_rating} max="5"></progress><br></br>
+              <progress className={styles.progress} value={this.state.location_rating} max="5"></progress><br></br>
+              <progress className={styles.progress} value={this.state.value_rating} max="5"></progress><br></br>
             </div >
             <div className={styles.rightScores}>
               <div>{this.state.checkin_rating}</div>
