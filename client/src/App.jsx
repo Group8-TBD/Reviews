@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import Reviews from './Reviews.jsx';
 import styles from '../dist/App.css';
 
 class App extends React.Component {
