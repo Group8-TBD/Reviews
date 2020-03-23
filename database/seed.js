@@ -4,19 +4,6 @@ const connection = mysql.createConnection(mysqlConfig);
 connection.connect();
 const faker = require('faker');
 
-const usersSeedData = () => {
-  for (let i = 0; i < 100; i++) {
-    let username = faker.name.firstName();
-    let avatar = faker.image.avatar();
-    let queryString = `INSERT INTO users (name, avatar) VALUES ('${username}', '${avatar}')`;
-    connection.query(queryString, (err, data) => {
-      if (err) {
-        console.log('Error seeding the users table in the database', err);
-      }
-    });
-  }
-};
-
 const listingsSeedData = () => {
 
   for (let i = 0; i < 100; i++) {
@@ -39,28 +26,28 @@ const listingsSeedData = () => {
 };
 
 const reviewsSeedData = () => {
-  let userCount = 0;
   let listingCount = 0;
   for (let i = 0; i < 120; i++) {
     let text = faker.lorem.paragraph();
     let date = faker.date.month() + " 2019";
-    let queryString = `INSERT INTO reviews (text, date, user_id, listings_id) VALUES ('${text}', '${date}', ${userCount}, ${listingCount})`;
+    let username = faker.name.firstName();
+    let avatar = faker.image.avatar();
+    let queryString = `INSERT INTO reviews (text, date, username, avatar, listings_id) VALUES ('${text}', '${date}', '${username}', '${avatar}', ${listingCount})`;
     connection.query(queryString, (err, data) => {
       if (err) {
         console.log('Error seeding the reviews table in the database', err);
       }
     })
-    userCount++;
     listingCount++;
   }
 };
 
-usersSeedData();
 listingsSeedData();
 reviewsSeedData();
 
+console.log('Database has been seeded');
+
 module.exports = {
-  usersSeedData,
   listingsSeedData,
   reviewsSeedData
 }

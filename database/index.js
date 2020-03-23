@@ -26,21 +26,9 @@ const getListing = (value, callback) => {
 const getReviews = (value, callback) => {
 
   let reviewRow = Math.floor(Math.random() * 100);
-  let numReviews = Math.floor(Math.random() * 15) + 5;
+  // let numReviews = Math.floor(Math.random() * 8) + 2;
+  let numReviews = 6;
   let queryString = `SELECT * FROM reviews LIMIT ${reviewRow}, ${numReviews}`;
-  connection.query(queryString, (error, data) => {
-    if (error) {
-      callback(error, null);
-    }
-    else {
-      callback(null, data);
-    }
-  })
-};
-
-const getUser = (value, callback) => {
-  let randomUser = Math.floor(Math.random() * 100);
-  let queryString = `SELECT * FROM users WHERE id = '${randomUser}' LIMIT 1`;
   connection.query(queryString, (error, data) => {
     if (error) {
       callback(error, null);
@@ -54,7 +42,6 @@ const getUser = (value, callback) => {
 module.exports = {
   connection,
   getListing,
-  getReviews,
-  getUser
+  getReviews
 };
 
