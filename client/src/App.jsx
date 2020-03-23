@@ -104,10 +104,17 @@ class App extends React.Component {
               <div className={styles.rating}>Cleanliness </div>
 
             </div>
+            <div>
+            </div>
             <div className={styles.leftBars}>
-              <div className="fas fa-minus">{' '}{this.state.com_rating}</div> <br></br>
-              <div className="fas fa-minus">{' '}{this.state.acuracy_rating}</div> <br></br>
-              <div className="fas fa-minus">{' '}{this.state.clean_rating}</div> <br></br>
+              <progress value="50" max="100"></progress><br></br>
+              <progress value="50" max="100"></progress><br></br>
+              <progress value="50" max="100"></progress><br></br>
+            </div>
+            <div className={styles.leftScores}>
+              <div>{this.state.com_rating}</div>
+              <div>{this.state.acuracy_rating}</div>
+              <div>{this.state.clean_rating}</div>
             </div>
             <div className={styles.rightBox}>
               <div className={styles.rating}>Check-in </div>
@@ -115,10 +122,15 @@ class App extends React.Component {
               <div className={styles.rating}>Value </div>
             </div>
             <div className={styles.rightBars}>
-              <div className="fas fa-minus">{' '}{this.state.checkin_rating}</div> <br></br>
-              <div className="fas fa-minus"> {' '}{this.state.location_rating}</div > <br></br>
-              <div className="fas fa-minus"> {' '}{this.state.value_rating}</div > <br></br>
+              <progress value="50" max="100"></progress><br></br>
+              <progress value="50" max="100"></progress><br></br>
+              <progress value="50" max="100"></progress><br></br>
             </div >
+            <div className={styles.rightScores}>
+              <div>{this.state.checkin_rating}</div>
+              <div>{this.state.location_rating}</div>
+              <div>{this.state.value_rating}</div>
+            </div>
           </div >
           <div className={styles.userBox}>
             <img src={this.state.avatars[0]} className={styles.image}></img>
