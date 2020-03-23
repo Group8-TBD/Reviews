@@ -88,11 +88,13 @@ class App extends React.Component {
 
     return (
 
-      < div >
-        <h1>Reviews</h1>
-        ⭐️ {this.state.star_rating}
-        {' | '}
-        {this.state.reviewsLength} reviews
+      <div className={styles.app}>
+        <h1 className={styles.header}>Reviews</h1>
+        <div className={styles.overview}>
+          ⭐️ {this.state.star_rating}
+          {' | '}
+          {this.state.reviewsLength} reviews
+        </div>
         < div className={styles.app} >
 
           < div className={styles.ratingsBox} >
@@ -107,9 +109,9 @@ class App extends React.Component {
             <div>
             </div>
             <div className={styles.leftBars}>
-              <progress value="50" max="100"></progress><br></br>
-              <progress value="50" max="100"></progress><br></br>
-              <progress value="50" max="100"></progress><br></br>
+              <progress className={styles.progress} value="50" max="100"></progress><br></br>
+              <progress className={styles.progress} value="50" max="100"></progress><br></br>
+              <progress className={styles.progress} value="50" max="100"></progress><br></br>
             </div>
             <div className={styles.leftScores}>
               <div>{this.state.com_rating}</div>
@@ -122,9 +124,9 @@ class App extends React.Component {
               <div className={styles.rating}>Value </div>
             </div>
             <div className={styles.rightBars}>
-              <progress value="50" max="100"></progress><br></br>
-              <progress value="50" max="100"></progress><br></br>
-              <progress value="50" max="100"></progress><br></br>
+              <progress className={styles.progress} value="50" max="100"></progress><br></br>
+              <progress className={styles.progress} value="50" max="100"></progress><br></br>
+              <progress className={styles.progress} value="50" max="100"></progress><br></br>
             </div >
             <div className={styles.rightScores}>
               <div>{this.state.checkin_rating}</div>

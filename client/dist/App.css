@@ -1,3 +1,17 @@
+.app{
+  width: 80%;
+  font: Circular, -apple-system, system-ui, Roboto, "Helvetica Neue", sans-serif;
+  color: #484848;
+}
+.header {
+  line-height: 30px;
+  font-size: 24px;
+  text-align: start;
+}
+.overview {
+  font-size: 18px;
+  font-weight: 400;
+}
 .leftBox {
   grid-column: 1/6;
   grid-row: 1;
@@ -28,6 +42,10 @@
   padding-bottom: 20px;
   border-bottom: 1px solid #EBEBEB
 }
+.progress {
+  width: 70px;
+}
+
 .image{
   width: 60px;
   height: 60px;
@@ -57,7 +75,7 @@
   padding-bottom: 20px;
 }
  .reviewText{
-   width: 70%;
+   width: 100%;
  }
  .reviewBreak {
   border-bottom: 1px solid #EBEBEB;
