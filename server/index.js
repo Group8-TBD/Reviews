@@ -36,19 +36,6 @@ app.get('/api/reviews', (req, res) => {
     }
   })
 });
-app.get('/api/user', (req, res) => {
-  console.log('Received a GET request for a user');
-  db.getUser(req, (error, data) => {
-    if (error) {
-      console.log('Error getting user from the database: ', error);
-      res.status(400);
-    }
-    else {
-      res.status(200);
-      res.send(data);
-    }
-  })
-})
 
 app.post('api/reviews', (req, res) => {
   console.log('Received a POST request');
