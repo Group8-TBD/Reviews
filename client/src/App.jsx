@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import styles from '../dist/App.css';
+import Star from '../media/star.svg';
 
 class App extends React.Component {
   constructor(props) {
@@ -91,7 +92,8 @@ class App extends React.Component {
       <div className={styles.app}>
         <h1 className={styles.header}>Reviews</h1>
         <div className={styles.overview}>
-          ⭐️ {this.state.star_rating}
+          <img className={styles.star} src={Star} />
+          {this.state.star_rating}
           {' | '}
           {this.state.reviewsLength} reviews
         </div>
