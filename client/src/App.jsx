@@ -2,37 +2,42 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Reviews from './Reviews.jsx';
+import styles from '../dist/App.css';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // reviews: [],
-      // user: this.props.user,
-      // listing: this.props.listing
-      //reviews: this.props.reviews,
-      username: "Beatrice",
-      avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/dnezkumar/128.jpg",
-      listing: 64,
-      date: "September 2019",
-      reviewsLength: 5,
-      reviewText: "Excepturi ut assumenda omnis tempora dolorem ratione quos dolorem. Sit autem aut. Fuga qui et est non ut quis doloribus provident omnis. Eos molestiae necessitatibus dicta. Dolorem cumque consequuntur nostrum sint. Suscipit eligendi explicabo.",
-      com_rating: 2.6,
-      acuracy_rating: 3.9,
-      clean_rating: 3.4,
-      checkin_rating: 4.3,
-      location_rating: 1.1,
-      value_rating: 4.0,
-      star_rating: 3
+      reviews: [],
+      usernames: [],
+      avatars: [],
+      reviewsLength: 0,
+      reviewIds: [],
+      reviewTexts: [],
+      dates: [],
+      listing: null,
+      com_rating: null,
+      acuracy_rating: null,
+      clean_rating: null,
+      checkin_rating: null,
+      location_rating: null,
+      value_rating: null,
+      star_rating: 5
     }
   }
+
   getListing() {
     axios.get("/api/listing")
-      .then(res => JSON.stringify(res.data))
       .then((data) => {
-        // console.log(data);
         this.setState({
-          listing: data
+          listing: data.data[0].id,
+          com_rating: data.data[0].com_rating,
+          acuracy_rating: data.data[0].acuracy_rating,
+          clean_rating: data.data[0].clean_rating,
+          checkin_rating: data.data[0].checkin_rating,
+          location_rating: data.data[0].location_rating,
+          value_rating: data.data[0].value_rating,
+          star_rating: data.data[0].star_rating
         })
       })
       .catch((error) => {
@@ -42,30 +47,31 @@ class App extends React.Component {
         console.log('GET listing request sent')
       })
   }
-  getUser() {
-    axios.get("/api/user")
-      .then((data) => {
-        console.log(data);
-        this.setState({ user: data })
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => {
-        console.log('GET user request sent')
-      })
-  }
   getReviews() {
     axios.get("/api/reviews")
-      .then(res => JSON.stringify(res.data))
       .then((data) => {
-        let reviewsLength = data.length;
-
-        console.log("DATA: ", data, "LENGTH: ", reviewsLength);
+        let length = Object.keys(data.data).length;
+        let reviews = [];
+        let usernames = [];
+        let avatars = [];
+        let ids = [];
+        let texts = [];
+        let dates = [];
+        for (let i = 0; i < length; i++) {
+          reviews.push(data.data[i].username, data.data[i].text);
+          usernames.push(data.data[i].username);
+          avatars.push(data.data[i].avatar);
+          ids.push(data.data[i].id);
+          texts.push(data.data[i].text);
+          dates.push(data.data[i].date);
+        }
         this.setState({
-          // reviews: data,
-          // reviewsLength: reviewsLength
-
+          usernames: usernames,
+          avatars: avatars,
+          reviewsLength: length,
+          reviewIds: ids,
+          reviewTexts: texts,
+          dates: dates
         })
       })
       .catch((error) => {
@@ -78,61 +84,104 @@ class App extends React.Component {
   componentDidMount() {
     this.getListing();
     this.getReviews();
-    this.getUser();
   }
-
   render() {
-    { this.state.reviews }
+
     return (
 
-      <div>
+      < div >
         <h1>Reviews</h1>
         ⭐️ {this.state.star_rating}
         {' | '}
         {this.state.reviewsLength} reviews
-        <div className="app">
-          {/* <Reviews reviews={this.state.reviews} /> */}
+        < div className={styles.app} >
 
-          <div className="ratingsBox">
-            <div className="leftBox">
-              <div className="rating">Communication </div>
+          < div className={styles.ratingsBox} >
+            <div className={styles.leftBox}>
+              <div className={styles.rating}>Communication </div>
 
-              <div className="rating">Accuracy </div>
+              <div className={styles.rating}>Accuracy </div>
 
-              <div className="rating">Cleanliness </div>
+              <div className={styles.rating}>Cleanliness </div>
 
             </div>
-            <div className="leftBars">
+            <div className={styles.leftBars}>
               <div className="fas fa-minus">{' '}{this.state.com_rating}</div> <br></br>
               <div className="fas fa-minus">{' '}{this.state.acuracy_rating}</div> <br></br>
               <div className="fas fa-minus">{' '}{this.state.clean_rating}</div> <br></br>
             </div>
-            <div className="rightBox">
-              <div className="rating">Check-in </div>
-              <div className="rating">Location </div>
-              <div className="rating">Value </div>
+            <div className={styles.rightBox}>
+              <div className={styles.rating}>Check-in </div>
+              <div className={styles.rating}>Location </div>
+              <div className={styles.rating}>Value </div>
             </div>
-            <div className="rightBars">
+            <div className={styles.rightBars}>
               <div className="fas fa-minus">{' '}{this.state.checkin_rating}</div> <br></br>
-              <div className="fas fa-minus">{' '}{this.state.location_rating}</div> <br></br>
-              <div className="fas fa-minus">{' '}{this.state.value_rating}</div> <br></br>
-            </div>
+              <div className="fas fa-minus"> {' '}{this.state.location_rating}</div > <br></br>
+              <div className="fas fa-minus"> {' '}{this.state.value_rating}</div > <br></br>
+            </div >
+          </div >
+          <div className={styles.userBox}>
+            <img src={this.state.avatars[0]} className={styles.image}></img>
+            <div className={styles.name}>{this.state.usernames[0]}</div><br></br>
+            <div className={styles.date}>{this.state.dates[0]}</div>
           </div>
-          <div className="userBox">
-            <img src={this.state.avatar} className="image"></img>
-            <div className="name">{this.state.username}</div><br></br>
-            <div className="date">{this.state.date}</div>
+          <div className={styles.reviewText}>
+            <div>{this.state.reviewTexts[0]}</div>
           </div>
-          <div className="reviewText">
-            <div>{this.state.reviewText}</div>
+          <div className={styles.reviewBreak}></div>
+          <div className={styles.userBox}>
+            <img src={this.state.avatars[1]} className={styles.image}></img>
+            <div className={styles.name}>{this.state.usernames[1]}</div><br></br>
+            <div className={styles.date}>{this.state.dates[1]}</div>
           </div>
-          <div className="reviewBreak"></div>
+          <div className={styles.reviewText}>
+            <div>{this.state.reviewTexts[1]}</div>
+          </div>
+          <div className={styles.reviewBreak}></div>
+          <div className={styles.userBox}>
+            <img src={this.state.avatars[2]} className={styles.image}></img>
+            <div className={styles.name}>{this.state.usernames[2]}</div><br></br>
+            <div className={styles.date}>{this.state.dates[2]}</div>
+          </div>
+          <div className={styles.reviewText}>
+            <div>{this.state.reviewTexts[2]}</div>
+          </div>
+          <div className={styles.reviewBreak}></div>
+          <div className={styles.userBox}>
+            <img src={this.state.avatars[3]} className={styles.image}></img>
+            <div className={styles.name}>{this.state.usernames[3]}</div><br></br>
+            <div className={styles.date}>{this.state.dates[3]}</div>
+          </div>
+          <div className={styles.reviewText}>
+            <div>{this.state.reviewTexts[3]}</div>
+          </div>
+          <div className={styles.reviewBreak}></div>
+          <div className={styles.userBox}>
+            <img src={this.state.avatars[4]} className={styles.image}></img>
+            <div className={styles.name}>{this.state.usernames[4]}</div><br></br>
+            <div className={styles.date}>{this.state.dates[4]}</div>
+          </div>
+          <div className={styles.reviewText}>
+            <div>{this.state.reviewTexts[4]}</div>
+          </div>
+          <div className={styles.reviewBreak}></div>
+          <div className={styles.userBox}>
+            <img src={this.state.avatars[5]} className={styles.image}></img>
+            <div className={styles.name}>{this.state.usernames[5]}</div><br></br>
+            <div className={styles.date}>{this.state.dates[5]}</div>
+          </div>
+          <div className={styles.reviewText}>
+            <div>{this.state.reviewTexts[5]}</div>
+          </div>
+          <div className={styles.reviewBreak}></div>
 
-        </div>
+        </div >
       </div >
     );
   }
 };
+
 
 
 

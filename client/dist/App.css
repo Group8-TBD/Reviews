@@ -34,13 +34,13 @@
   padding-left: 100px;
   padding-top: 10px;
   position: absolute;
-  right: 600px;
+  left: 80px;
 }
 .date {
   padding-left: 100px;
   padding-top: 30px;
   position: absolute;
-  right: 550px;
+  left: 80px;
 }
 .userBox {
   display: grid;
