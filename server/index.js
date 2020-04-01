@@ -18,6 +18,7 @@ app.get('/api/listing', (req, res) => {
       res.status(400);
     }
     else {
+      console.log(data)
       res.status(200);
       res.send(data);
     }
@@ -38,8 +39,52 @@ app.get('/api/reviews', (req, res) => {
 });
 
 app.post('api/reviews', (req, res) => {
+
   console.log('Received a POST request');
 });
+
+
+app.post('api/createListing', (req, res)=> {
+  console.log('Received a POST request for listings');
+  db.postListing(req.body, (error, data) => {
+    if (error) {
+      console.log('Error creating an item from the database: ', error);
+      res.status(400);
+    }
+    else {
+      res.status(200);
+      res.send(data);
+    }
+  })
+});
+
+app.put('api/updateListing', (req, res)=>{
+  console.log('Received a PUT request for listings');
+  db.putListing(req.body, (error, data) => {
+    if (error) {
+      console.log('Error updating an item to the database: ', error);
+      res.status(400);
+    }
+    else {
+      res.status(200);
+      res.send(data);
+    }
+  })
+})
+
+app.delete('api/deleteListing', (req, res)=>{
+  console.log('Received a DELETE request for listings');
+  db.putListing(req.body, (error, data) => {
+    if (error) {
+      console.log('Error deleting an item to the database: ', error);
+      res.status(400);
+    }
+    else { 
+      res.status(200);
+      res.send(data);
+    }
+  })
+})
 
 /********* Start App *********/
 app.listen(PORT, () => {

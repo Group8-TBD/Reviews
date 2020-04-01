@@ -1,8 +1,8 @@
 {
-  "name": "reviews",
+  "name": "reviewscomponent",
   "version": "1.0.0",
-  "description": "User reviews component",
-  "author": "Laura Heddleston",
+  "description": "SDC - User reviews component",
+  "author": "Shemal Shah",
   "license": "None",
   "engines": {
     "node": ">=6.13.0"

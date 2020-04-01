@@ -6,7 +6,7 @@ const faker = require('faker');
 
 const listingsSeedData = () => {
 
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 100000; i++) {
     let com_rating = faker.finance.amount(0, 5, 1);
     let acuracy_rating = faker.finance.amount(0, 5, 1);
     let clean_rating = faker.finance.amount(0, 5, 1);
