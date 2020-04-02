@@ -64,7 +64,7 @@ The request body must have all the ratings for the listing
 
 ### Update a listing
 ```sh
-PUT /listing
+PUT /listing?id
 ```
 Updates the listing with the info provided within the body of the request
 
@@ -80,7 +80,7 @@ The request body must have the id, field and the info to be updated
 
 ### Delete a listing
 ```sh
-DELETE /listing
+DELETE /listing?id
 ```
 #### Parameters
 | ID | Type | Description |
