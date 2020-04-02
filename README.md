@@ -60,7 +60,7 @@ The request body must have all the ratings for the listing
 | Star | `number` | Overall star rating of the listing |
 
 #### Response
-`Status: 200 OK`
+`Status: 201 OK`
 
 ### Update a listing
 ```sh
