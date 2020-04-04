@@ -26,3 +26,4 @@ client/dist/bundle.js
 
 # Config files
 database/config.js
+*.csv

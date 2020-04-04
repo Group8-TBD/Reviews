@@ -42,9 +42,9 @@ const reviewsSeedData = () => {
   }
 };
 
-listingsSeedData();
-reviewsSeedData();
-
+// listingsSeedData();
+// reviewsSeedData();
+console.log(faker.image.avatar());
 console.log('Database has been seeded');
 
 module.exports = {

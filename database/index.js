@@ -40,7 +40,7 @@ const getReviews = (value, callback) => {
 };
 
 const postListing = (values, callback) => {
-  let query = `INSERT INTO listings(com_rating, acuracy_rating, clean_rating, checkin_rating, location_rating,    value_rating, star_rating) VALUES(${values.com_rating}, ${values.acuracy_rating}, ${values.clean_rating}, ${values.checkin_rating}, ${values.location_rating}, ${values.value_rating}, ${values. star_rating})`
+  let query = `INSERT INTO listings(com_rating, acuracy_rating, clean_rating, checkin_rating, location_rating, value_rating, star_rating) VALUES(${values.com_rating}, ${values.acuracy_rating}, ${values.clean_rating}, ${values.checkin_rating}, ${values.location_rating}, ${values.value_rating}, ${values. star_rating})`
   connection.query(query, (error, data) =>{
     if (error) {
       callback(error, null);

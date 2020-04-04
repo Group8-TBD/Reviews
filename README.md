@@ -8,7 +8,6 @@
 
 ## Requirements
 
-
 ### Installing Dependencies
 
 From within the root directory:
