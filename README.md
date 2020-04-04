@@ -50,20 +50,20 @@ The request body must have all the ratings for the listing
 
 | Rating Name | Type | Description |
 | ---- | ---- | ----------- |
-| Communication | `number` | Communication rating for the listing |
-| Accuracy | `number` | Accuracy rating of the listing |
-| Cleanliness | `number` |Cleanliness of the listing |
-| Check-in | `number` | Check-in process of the listing |
-| Location | `number` | Location accessibility of the listing |
+| Communication | `decimal` | Communication rating for the listing |
+| Accuracy | `decimal` | Accuracy rating of the listing |
+| Cleanliness | `decimal` |Cleanliness of the listing |
+| Check-in | `decimal` | Check-in process of the listing |
+| Location | `decimal` | Location accessibility of the listing |
 | Value | `number` | Value for the buck of the listing |
 | Star | `number` | Overall star rating of the listing |
 
 #### Response
-`Status: 200 OK`
+`Status: 201 OK`
 
 ### Update a listing
 ```sh
-PUT /listing
+PUT /listing?id
 ```
 Updates the listing with the info provided within the body of the request
 
@@ -79,7 +79,7 @@ The request body must have the id, field and the info to be updated
 
 ### Delete a listing
 ```sh
-DELETE /listing
+DELETE /listing?id
 ```
 #### Parameters
 | ID | Type | Description |
