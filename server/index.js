@@ -12,47 +12,42 @@ app.use(bodyParser.urlencoded({ extended: true }));
 /********* Routes + Controllers *********/
 app.get('/api/listing', (req, res) => {
   console.log('Received a GET request for a listing');
-  db.getListing(req, (error, data) => {
+  db.getListing((error, data) => {
     if (error) {
       console.log('Error getting listing from database: ', error);
-      res.status(400);
+      res.sendStatus(400);
     }
     else {
-      console.log(data)
-      res.status(200);
+      res.sendStatus(200);
       res.send(data);
     }
   })
 });
-app.get('/api/reviews', (req, res) => {
-  console.log('Received a GET request for reviews');
-  db.getReviews(req, (error, data) => {
+
+app.post('api/createReview', (req, res) => {
+  console.log('Received a POST request for reviews');
+  db.createReview(req.body, (error, data) => {
     if (error) {
-      console.log('Error getting reviews from the database: ', error);
+      console.log('Error creating a review from the database: ', error);
       res.status(400);
     }
     else {
-      res.status(200);
+      res.sendStatus(200);
       res.send(data);
     }
   })
-});
-
-app.post('api/reviews', (req, res) => {
-
-  console.log('Received a POST request');
 });
 
 
 app.post('api/createListing', (req, res)=> {
   console.log('Received a POST request for listings');
-  db.postListing(req.body, (error, data) => {
+  db.createListing(req.body, (error, data) => {
     if (error) {
       console.log('Error creating an item from the database: ', error);
       res.status(400);
     }
     else {
-      res.status(200);
+      res.sendStatus(200);
       res.send(data);
     }
   })
@@ -60,13 +55,13 @@ app.post('api/createListing', (req, res)=> {
 
 app.put('api/updateListing', (req, res)=>{
   console.log('Received a PUT request for listings');
-  db.putListing(req.body, (error, data) => {
+  db.updateListing(req.body, (error, data) => {
     if (error) {
       console.log('Error updating an item to the database: ', error);
-      res.status(400);
+      res.sendStatus(400);
     }
     else {
-      res.status(200);
+      res.sendStatus(200);
       res.send(data);
     }
   })
@@ -74,13 +69,13 @@ app.put('api/updateListing', (req, res)=>{
 
 app.delete('api/deleteListing', (req, res)=>{
   console.log('Received a DELETE request for listings');
-  db.putListing(req.body, (error, data) => {
+  db.deleteListing(req.body, (error, data) => {
     if (error) {
       console.log('Error deleting an item to the database: ', error);
-      res.status(400);
+      res.sendStatus(400);
     }
-    else { 
-      res.status(200);
+    else {
+      res.sendStatus(200);
       res.send(data);
     }
   })

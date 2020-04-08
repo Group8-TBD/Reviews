@@ -1,24 +1,4 @@
-CREATE KEYSPACE IF NOT EXISTS tbdbKeyspace WITH replication = {'class': 'SimpleStrategy', 'replication_factor':3};
 
-USE tbdbKeyspace;
-
-CREATE TABLE IF NOT EXISTS listings(
- listing_id INT,
- com_rating text,
- acuracy_rating Decimal,
- clean_rating Decimal,
- checkin_rating Decimal,
- location_rating Decimal,
- value_rating INT,
- star_rating INT,
- review_id INT,
- review_comment text,
- review_date date,
- review_username text,
- review_avatar text,
- PRIMARY KEY (listing_id, review_date)
-});
------------Different SCHEMA-------------
 CREATE KEYSPACE IF NOT EXISTS tbdbKeyspace WITH replication = {'class': 'SimpleStrategy', 'replication_factor':1};
 
 USE tbdbKeyspace;
@@ -26,9 +6,9 @@ USE tbdbKeyspace;
 CREATE TYPE IF NOT EXISTS review
 (
    comment text,
-   username varchar,
+   username text,
    avatar text,
-   posting_date date
+   posting_date text
 );
 
 CREATE TABLE IF NOT EXISTS listings(
@@ -41,7 +21,7 @@ CREATE TABLE IF NOT EXISTS listings(
  value_rating INT,
  star_rating INT,
  reviews map <int, frozen < review > >
-);   
+);
 
 
 
@@ -68,11 +48,27 @@ insert into listings(listing_id, com_rating, accuracy_rating, clean_rating, chec
 --     COPY keyspace.tablename FROM 'PATH' WITH DELIMITER='|' AND HEADER=TRUE;
 
 
- COPY tbdbkeyspace.listings(listing_id, com_rating, accuracy_rating, clean_rating, checkin_rating, location_rating, value_rating, star_rating, reviews) FROM '/Users/shemalshah/Desktop/HR/SDC/id.csv' WITH DELIMITER='|' AND HEADER=TRUE ;
+COPY tbdbkeyspace.listings(listing_id, com_rating, accuracy_rating, clean_rating, checkin_rating, location_rating, value_rating, star_rating,reviews) FROM '/Users/shemalshah/Desktop/HR/SDC/Reviews/database/cassandra.csv' WITH DELIMITER=';' AND HEADER=TRUE ;
 
-COPY tbdbkeyspace.listings(listing_id,reviews) from '/Users/shemalshah/Desktop/HR/SDC/Reviews/database/cassandra.csv' WITH DELIMITER=';' AND HEADER=TRUE ;
-  COPY tbdbkeyspace.listings(listing_id, com_rating, accuracy_rating, clean_rating, checkin_rating, location_rating, value_rating, star_rating) FROM '/Users/shemalshah/Desktop/HR/SDC/Reviews/database/cassandra.csv' WITH DELIMITER=';' AND HEADER=TRUE ;
+---------------------------------Different SCHEMA-----------------------------------
 
+CREATE KEYSPACE IF NOT EXISTS tbdbKeyspace2 WITH replication = {'class': 'SimpleStrategy', 'replication_factor':1};
 
+USE tbdbKeyspace2;
 
-  -- This worked -- 13;"{1:{comment:'re quae.',username:'Arturo',avatar:'https://s3.',posting_date:'2019-04-04'},2:{comment:'Eligendi',username:'Arturo',avatar:'https://s3',posting_date:'2019-04-04'}}"
+CREATE TABLE IF NOT EXISTS listings(
+ listing_id INT,
+ com_rating text,
+ acuracy_rating Decimal,
+ clean_rating Decimal,
+ checkin_rating Decimal,
+ location_rating Decimal,
+ value_rating INT,
+ star_rating INT,
+ review_id INT,
+ review_comment text,
+ review_date date,
+ review_username text,
+ review_avatar text,
+ PRIMARY KEY (listing_id, review_date)
+});s

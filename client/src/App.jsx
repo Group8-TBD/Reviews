@@ -28,44 +28,31 @@ class App extends React.Component {
 
   getListing() {
     axios.get("/api/listing")
-      .then((data) => {
-        this.setState({
-          listing: data.data[0].id,
-          com_rating: data.data[0].com_rating,
-          acuracy_rating: data.data[0].acuracy_rating,
-          clean_rating: data.data[0].clean_rating,
-          checkin_rating: data.data[0].checkin_rating,
-          location_rating: data.data[0].location_rating,
-          value_rating: data.data[0].value_rating,
-          star_rating: data.data[0].star_rating
-        })
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => {
-        console.log('GET listing request sent')
-      })
-  }
-  getReviews() {
-    axios.get("/api/reviews")
-      .then((data) => {
-        let length = Object.keys(data.data).length;
+      .then((result) => {
+        let length = Object.keys(result.data.reviews).length;
         let reviews = [];
         let usernames = [];
         let avatars = [];
         let ids = [];
         let texts = [];
         let dates = [];
-        for (let i = 0; i < length; i++) {
-          reviews.push(data.data[i].username, data.data[i].text);
-          usernames.push(data.data[i].username);
-          avatars.push(data.data[i].avatar);
-          ids.push(data.data[i].id);
-          texts.push(data.data[i].text);
-          dates.push(data.data[i].date);
+        for (let i = 1; i < length; i++) {
+          reviews.push(result.data.reviews[i].username, result.data.reviews[i].text);
+          usernames.push(result.data.reviews[i].username);
+          avatars.push(result.data.reviews[i].avatar);
+          ids.push(result.data.reviews[i].id);
+          texts.push(result.data.reviews[i].comment + ' ' + result.data.reviews[i].comment),
+          dates.push(result.data.reviews[i].date);
         }
         this.setState({
+          listing: result.data.listing_id,
+          com_rating: result.data.com_rating,
+          acuracy_rating: result.data.accuracy_rating,
+          clean_rating: result.data.clean_rating,
+          checkin_rating: result.data.checkin_rating,
+          location_rating: result.data.location_rating,
+          value_rating: result.data.value_rating,
+          star_rating: result.data.star_rating,
           usernames: usernames,
           avatars: avatars,
           reviewsLength: length,
@@ -75,15 +62,49 @@ class App extends React.Component {
         })
       })
       .catch((error) => {
-        console.log('Error getting reviews from the database', error);
+        console.log(error);
       })
       .finally(() => {
-        console.log('GET reviews request sent')
+        console.log('GET listing request sent')
       })
   }
+  // getReviews() {
+  //   axios.get("/api/reviews")
+  //     .then((result) => {
+  //       let length = Object.keys(result.data.review).length;
+  //       let reviews = [];
+  //       let usernames = [];
+  //       let avatars = [];
+  //       let ids = [];
+  //       let texts = [];
+  //       let dates = [];
+  //       for (let i = 0; i < length; i++) {
+  //         reviews.push(result.data[i].username, data.data[i].text);
+  //         usernames.push(result.data[i].username);
+  //         avatars.push(result.data[i].avatar);
+  //         ids.push(result.data[i].id);
+  //         texts.push(result.data[i].text);
+  //         dates.push(result.data[i].date);
+  //       }
+  //       this.setState({
+  //         usernames: usernames,
+  //         avatars: avatars,
+  //         reviewsLength: length,
+  //         reviewIds: ids,
+  //         reviewTexts: texts,
+  //         dates: dates
+  //       })
+  //     })
+  //     .catch((error) => {
+  //       console.log('Error getting reviews from the database', error);
+  //     })
+  //     .finally(() => {
+  //       console.log('GET reviews request sent')
+  //     })
+  // }
   componentDidMount() {
     this.getListing();
-    this.getReviews();
+  //  this.getReviews();
   }
   render() {
 

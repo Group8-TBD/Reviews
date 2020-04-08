@@ -2,6 +2,7 @@ const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 const faker = require('faker');
 
 //-------------------------------Listings-------------------------------
+
 // const csvWriter = createCsvWriter({
 //     path: './test.csv',
 //     header: [
@@ -29,9 +30,11 @@ const faker = require('faker');
 //         {listing_id:listing_id, com_rating:com_rating, acuracy_rating:acuracy_rating, clean_rating:clean_rating, checkin_rating:checkin_rating, location_rating:location_rating, value_rating:value_rating, star_rating:star_rating}
 //     )
 //  };
+
 //-------------------------------Reviews-------------------------------
+
 const csvWriter = createCsvWriter({
-    path: './test2.csv',
+    path: './test1.csv',
     header: [
         {id:'review_id'},
         {id: 'listing_id'},
@@ -40,20 +43,36 @@ const csvWriter = createCsvWriter({
         {id: 'posting_date'}
     ]
 });
+ const generateData = () => {
+    const reviews = [];
+    for (var i = cycle; i <= cycle; i++){
+        let review_id = i;
+        let listing_id = faker.random.number({min:1, max:10000000});
+        let user_id = faker.random.number({min:1, max:500000});
+        let text = faker.lorem.sentences(3);
+        let date = `${faker.date.month()} ${faker.random.number({min:2017, max:2020})}`
+        reviews.push({
+            review_id : review_id, listing_id:listing_id, user_id: user_id, text: text, posting_date:date
+        });
 
- const reviews = [];
- for (var i = 11000001; i <= 15000000; i++){
-    let review_id = i;
-    let listing_id = faker.random.number({min:1, max:10000000});
-    let user_id = faker.random.number({min:1, max:500000});
-    let text = faker.lorem.sentences(3);
-    let date = `${faker.date.month()} ${faker.random.number({min:2017, max:2020})}`
-    reviews.push({
-        review_id : review_id, listing_id:listing_id, user_id: user_id, text: text, posting_date:date
-    });
- }
+    }
+    return reviews;
+}
+
+//  const reviews = [];
+//  for (var i = 43000001; i <= 43000300; i++){
+//     let review_id = 1;
+//     let listing_id = faker.random.number({min:1, max:10000000});
+//     let user_id = faker.random.number({min:1, max:500000});
+//     let text = faker.lorem.sentences(3);
+//     let date = `${faker.date.month()} ${faker.random.number({min:2017, max:2020})}`
+//     reviews.push({
+//         review_id : review_id, listing_id:listing_id, user_id: user_id, text: text, posting_date:date
+//     });
+//  }
 
 //-------------------------------Users-------------------------------
+
 //  const csvWriter = createCsvWriter({
 //     path: './test.csv',
 //     header: [
@@ -74,11 +93,37 @@ const csvWriter = createCsvWriter({
 //  }
 
 //-----------------------------Function to run-------------------------------
+let cycle = 70000000;
+const generateManyRecords = () => {
+  if (cycle < 85000000) {
+    let data = generateData();
+    csvWriter.writeRecords(data)
+    .then(() => {
+      cycle += 1;
+      generateManyRecords();
+    })
+      .catch((error) => console.log('Error:', error));
+  } else {
+    //console.timeEnd('Time taken to generate Cassandra data: ');
+    console.log('Records written!');
+  }
+};
+//generateManyRecords()
+
+//-----------------------------Function to run-------------------------------
 // Function can be run with the following command to increase the old space mem
 //node --max-old-space-size=4096 yourFile.js
 
-csvWriter.writeRecords(reviews)       // returns a promise
-    .then(() => {
-        console.log('...Done');
-    });
- 
+// csvWriter.writeRecords(reviews)       // returns a promise
+//     .then(() => {
+//         console.log('...Done');
+//     });
+
+
+//---------------------------------Insert a listing ------------------------------------
+INSERT INTO listings(listing_id, com_rating, acuracy_rating, clean_rating, checkin_rating,location_rating,value_rating,star_rating) VALUES (10000000, 3.3, 4.5, 4.4, 4.6, 4.9, 4, 5);
+//---------------------------------Insert a review -------------------------------------
+INSERT INTO reviews(review_id, listing_id, user_id, text, posting_date)
+VALUES(85000000, 10000002, 23934, 'This is a test comment. Another comment', 'April 2020');
+
+DELETE FROM listings where listing_id = 10000001;
