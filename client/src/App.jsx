@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
@@ -23,11 +24,11 @@ class App extends React.Component {
       location_rating: null,
       value_rating: null,
       star_rating: 5
-    }
+    };
   }
 
   getListing() {
-    axios.get("/api/listing")
+    axios.get('/api/listing')
       .then((result) => {
         let length = Object.keys(result.data.reviews).length;
         let reviews = [];
@@ -65,8 +66,8 @@ class App extends React.Component {
         console.log(error);
       })
       .finally(() => {
-        console.log('GET listing request sent')
-      })
+        console.log('GET listing request sent');
+      });
   }
   // getReviews() {
   //   axios.get("/api/reviews")

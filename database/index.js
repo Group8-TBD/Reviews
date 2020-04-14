@@ -7,17 +7,18 @@ const client = new cassandra.Client({
   keyspace: 'tbdbkeyspace'
 });
 
-const getListing = (callback) => {
-  let randomId = Math.floor(Math.random() * 10000000);
-  let query = `SELECT * FROM listings WHERE listing_id = ${randomId}`;
+const getListing = (id, callback) => {
+  //let randomId = Math.floor(Math.random() * 10000000);
+  let query = `SELECT * FROM listings WHERE listing_id = ${id}`;
+  //let query = 'SELECT * FROM listings WHERE listing_id = 232';
+
   client.execute(query, (error, result) => {
     if (error) {
       callback(error, null);
-    }
-    else {
+    } else {
       callback(null, result.rows[0]);
     }
-  })
+  });
 };
 
 const createListing = (value, callback) =>{
@@ -26,7 +27,7 @@ const createListing = (value, callback) =>{
 
 const createReview = (value, callback) =>{
 
-}
+};
 
 const updateListing = (value, callback) =>{
 
@@ -42,7 +43,7 @@ module.exports = {
   updateListing,
   deleteListing,
   createReview
-}
+};
 //const query = 'SELECT * FROM listings WHERE listing_id = 1';
 
 // client.execute(query)

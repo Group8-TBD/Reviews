@@ -1,5 +1,5 @@
 
-CREATE KEYSPACE IF NOT EXISTS tbdbKeyspace WITH replication = {'class': 'SimpleStrategy', 'replication_factor':1};
+CREATE KEYSPACE IF NOT EXISTS tbdbKeyspace WITH replication = {'class': 'SimpleStrategy', 'replication_factor':2};
 
 USE tbdbKeyspace;
 
@@ -71,4 +71,4 @@ CREATE TABLE IF NOT EXISTS listings(
  review_username text,
  review_avatar text,
  PRIMARY KEY (listing_id, review_date)
-});s
+});

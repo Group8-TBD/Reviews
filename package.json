@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.12.1",
+    "artillery": "^1.6.0",
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
     "cassandra-driver": "^4.5.0",
@@ -26,6 +27,7 @@
     "faker": "^4.1.0",
     "file-loader": "^6.0.0",
     "mysql": "^2.18.1",
+    "newrelic": "^6.5.0",
     "path": "^0.12.7",
     "pg": "^8.0.0",
     "react": "^16.13.0",
