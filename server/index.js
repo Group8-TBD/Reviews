@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const db = require('../database');
 const app = express();
 const PORT = 3500;
+//const file = require('./loaderio-95ecb2fc48192d4e88d4ad016bbc71dc.txt');
+
 
 /********* Middleware *********/
 app.use(express.static(__dirname + '/../client/dist'));
@@ -20,6 +22,24 @@ app.get('/api/listing/:listingID', (req, res) => {
       res.sendStatus(400);
     } else {
       res.send(data);
+    }
+  });
+});
+
+app.get('/loaderio-95ecb2fc48192d4e88d4ad016bbc71dc/', (req, res) => {
+  console.log('Received a GET request from loaderio');
+  res.send('loaderio-95ecb2fc48192d4e88d4ad016bbc71dc')
+});
+
+app.get('/api/listing/', (req, res) => {
+console.log('Received a GET request for a listing');
+console.log(req.params);
+  db.getListing(req.params.listingID, (error, data) => {
+  if (error) {
+  console.log('Error getting listing from database: ', error);
+  res.sendStatus(400);
+ } else {
+    res.send(data);
     }
   });
 });

@@ -1,0 +1,11 @@
+Listening on port 3500
+Received a GET request for a listing
+{ listingID: '5000003' }
+Received a GET request for a listing
+{ listingID: '508888' }
+Received a GET request for a listing
+{ listingID: '5088888' }
+Received a GET request for a listing
+{ listingID: '5088888' }
+Received a GET request for a listing
+{ listingID: '5088888' }
