@@ -11,10 +11,22 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 /********* Routes + Controllers *********/
-app.get('/api/listing/:listingID', (req, res) => {
+// app.get('/api/listing/listingID', (req, res) => {
+//   console.log('Received a GET request for a listing');
+//   console.log(req.query);
+//   db.getListing(req.params.listingID, (error, data) => {
+//     if (error) {
+//       console.log('Error getting listing from database: ', error);
+//       res.sendStatus(400);
+//     } else {
+//       res.send(data);
+//     }
+//   });
+// });
+app.get('/api/listing/', (req, res) => {
   console.log('Received a GET request for a listing');
-  console.log(req.params);
-  db.getListing(req.params.listingID, (error, data) => {
+  console.log(req.query);
+  db.getListing(req.query.listingID, (error, data) => {
     if (error) {
       console.log('Error getting listing from database: ', error);
       res.sendStatus(400);

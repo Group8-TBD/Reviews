@@ -4,7 +4,7 @@ const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 const faker = require('faker');
 
 const csvWriter = createCsvWriter({
-    path: './cassandra.csv',
+    path: './cassandra2.csv',
     header: [
         {id: 'listing_id'},
         {id: 'com_rating'},
@@ -19,6 +19,7 @@ const csvWriter = createCsvWriter({
     fieldDelimiter: ';',
     quoting: ''
 });
+//Records created from 5 to 9.5
 const generateData = () =>{
     const records = [];
     for (var i = cycle; i <= cycle; i++) {
@@ -32,7 +33,7 @@ const generateData = () =>{
        let star_rating = faker.random.number({min: 1, max: 5});
        const reviews = [];
        let string = '';
-       let rand = faker.random.number({min: 3, max: 5});
+       let rand = faker.random.number({min: 3, max: 4});
        for (var j = 1; j <= rand; j++) {
            let date = `${faker.date.month()} ${faker.random.number({min: 2017, max: 2020})}`;
            let username = faker.name.firstName();
@@ -52,17 +53,10 @@ const generateData = () =>{
     }
     return records;
 };
-
- let cycle = 3000000;
+ let cycle = 9000000;
  const generateManyRecords = () =>{
-     
-    //  if (cycle === 3001000) { console.log(1001000); }
-    //  if (cycle === 4001000) { console.log(4001000); }
-    //  if (cycle === 5101000) { console.log(5101000); }
-    //  if (cycle === 7101000) { console.log(7101000); }
-    //  if (cycle === 9101000) { console.log(9101000); }
 
-    if (cycle < 6000000) {
+    if (cycle < 9970000) {
         let data = generateData();
     csvWriter.writeRecords(data)
     .then(() => {

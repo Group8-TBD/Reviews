@@ -28,7 +28,7 @@ class App extends React.Component {
   }
 
   getListing() {
-    axios.get('/api/listing')
+    axios.get('/api/listing?listingID')
       .then((result) => {
         let length = Object.keys(result.data.reviews).length;
         let reviews = [];
@@ -60,7 +60,7 @@ class App extends React.Component {
           reviewIds: ids,
           reviewTexts: texts,
           dates: dates
-        })
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -217,9 +217,6 @@ class App extends React.Component {
       </div >
     );
   }
-};
+}
 
-
-
-
-ReactDOM.render(<App />, document.getElementById("app"));
+ReactDOM.render(<App />, document.getElementById('app'));
