@@ -23,7 +23,7 @@
     "cassandra-driver": "^4.5.0",
     "css-loader": "^3.4.2",
     "csv-writer": "^1.6.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "faker": "^4.1.0",
     "file-loader": "^6.0.0",
     "k6": "0.0.0",
